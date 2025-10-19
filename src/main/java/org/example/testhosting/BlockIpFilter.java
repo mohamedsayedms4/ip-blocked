@@ -19,7 +19,7 @@ public class BlockIpFilter extends OncePerRequestFilter {
     private final Set<String> blockedIps = new HashSet<>(Set.of(
             "192.0.2.1",
             "203.0.113.5",
-            "127.0.0.2" // مثال
+            "41.46.27.142" // مثال
     ));
 
     // لو عندك proxy (مثل nginx) تحقق من X-Forwarded-For أولاً
