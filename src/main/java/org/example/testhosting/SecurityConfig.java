@@ -1,6 +1,5 @@
 package org.example.testhosting;// SecurityConfig.java
 
-import org.apache.catalina.filters.RateLimitFilter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
@@ -15,7 +14,7 @@ public class SecurityConfig {
     private BlockIpFilter blockIpFilter;
 
     @Autowired
-    private RateLimitFilter rateLimitFilter;
+    private Bucket4jRateLimitFilter rateLimitFilter;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
