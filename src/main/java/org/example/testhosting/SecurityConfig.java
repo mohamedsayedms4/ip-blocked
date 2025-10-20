@@ -7,9 +7,12 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Configuration
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*") // <-- مهم جداً
+
 public class SecurityConfig {
 
     @Autowired
