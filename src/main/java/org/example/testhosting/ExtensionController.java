@@ -17,40 +17,6 @@ import java.util.Map;
 @RequestMapping("/api/extension")
 public class ExtensionController {
 
-    @GetMapping("/download-extension")
-    public ResponseEntity<byte[]> downloadExtension() throws IOException {
-        System.out.println("📦 [EXT] Download request received");
-
-        ClassPathResource resource = new ClassPathResource("static/extension/my-extension.rar");
-
-        if (!resource.exists()) {
-            System.out.println("❌ [EXT] File not found in classpath");
-            return ResponseEntity.notFound().build();
-        }
-
-        try (InputStream inputStream = resource.getInputStream()) {
-            byte[] fileContent = FileCopyUtils.copyToByteArray(inputStream);
-
-            System.out.println("✅ [EXT] File read successfully, size: " + fileContent.length + " bytes");
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-            headers.setContentDispositionFormData("attachment", "my-extension.rar");
-            headers.setContentLength(fileContent.length);
-            headers.setCacheControl("no-cache, no-store, must-revalidate");
-            headers.setPragma("no-cache");
-            headers.setExpires(0);
-
-            return ResponseEntity.ok()
-                    .headers(headers)
-                    .body(fileContent);
-
-        } catch (IOException e) {
-            System.out.println("❌ [EXT] Error while reading file: " + e.getMessage());
-            e.printStackTrace();
-            throw e;
-        }
-    }
 
     @PostMapping("/tabs")
     public ResponseEntity<Map<String, String>> receiveTabEvent(@RequestBody Map<String, Object> payload) {
